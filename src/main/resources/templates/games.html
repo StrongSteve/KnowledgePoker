@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Knowledge Poker</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+
+<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+<div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">Spieleübersicht</div>
+            <div class="panel-body">
+                Übersicht über alle verfügbaren Spiele
+            </div>
+            <a class="button" th:href="${'/game/new/'}">Neues Spiel anlegen</a>
+                <table class="table table-striped">
+                    <tr>
+                        <th>Spielname</th>
+                        <th>Erstellungsdatum</th>
+                        <th>Beendet</th>
+                        <th>Spieler</th>
+                        <th>Fortsetzen</th>
+                        <th>Löschen</th>
+                    </tr>
+                    <tr th:each="game : ${games}">
+                        <td th:text="${game.name}">Frage</td>
+                        <td th:text="${game.creationTimeStamp}">Frage</td>
+                        <td><label th:if="${game.finished}">Ja</label><label th:unless="${game.finished}"></label></td>
+                        <td th:text="${game.playerNames}">Spieler</td>
+                        <td><a th:unless="${game.finished}" th:href="${'/game/' +game.id +'/nextquestion'}">Fortsetzen</a></td>
+                        <td><a th:href="${'/game/remove/' +game.id}">Löschen</a></td>
+                    </tr>
+                </table>
+
+        </div>
+</div>
+
+</body>
+</html>

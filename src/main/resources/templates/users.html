@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Knowledge Poker</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+
+<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">Benutzerübersicht</div>
+        <div class="panel-body">
+            Übersicht über alle verfügbaren Benutzer
+        </div>
+        <table class="table table-striped">
+            <tr>
+                <th>Id</th>
+                <th>Benutzername</th>
+                <th>Rolle</th>
+                <th>Löschen</th>
+            </tr>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.id}"></td>
+                <td th:text="${user.userName}"></td>
+                <td th:text="${user.role}"></td>
+                <td><a th:unless="${user.socialUser}" th:href="${'/user/remove/' + user.id}">Löschen</a></td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+
+</body>
+</html>

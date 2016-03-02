@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Knowledge Poker</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+
+    <script>
+    $( document ).ready(function() {
+        var remoteUser = $(".navbar-right span").text();
+        $("tr td:contains('"+remoteUser+"')").addClass("leaderboard");
+    });
+    </script>
+
+
+</head>
+<body>
+
+<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">Leaderboard</div>
+        <table class="table table-striped">
+            <tr>
+                <th>Name</th>
+                <th>Fragen</th>
+            </tr>
+            <tr th:each="lb : ${leaderboard}">
+                <td th:text="${lb.displayName}">userName</td>
+                <td th:text="${lb.questionsAmount}">questionsAmount</td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+
+</body>
+</html>

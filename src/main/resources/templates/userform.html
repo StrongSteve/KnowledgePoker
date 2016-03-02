@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Knowledge Poker</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+
+<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+<div class="container">
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Benutzer anlegen</div>
+        <div class="panel-body">
+            <form class="form-horizontal" th:object="${usercreateform}" th:action="@{/user}" method="post">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Benutzername:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" th:field="*{userName}" th:errorclass="fieldError"/>
+                        <td class="sr-only" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}">Title error message</td>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Passwort:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" th:field="*{password}" th:errorclass="fieldError"/>
+                        <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Title error message</td>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Administrator:</label>
+                    <div class="col-sm-10">
+                        <input type="checkbox" th:field="*{administrator}" th:value="${administrator}"
+                               th:errorclass="fieldError"/>
+                        <td th:if="${#fields.hasErrors('administrator')}" th:errors="*{administrator}">Title error message</td>
+                    </div>
+                </div>
+                <div class="row">
+                    <input type="submit" value="Speichern"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

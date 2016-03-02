@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Knowledge Poker</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+
+<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+<div class="container">
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Frage bearbeiten</div>
+        <div class="panel-body">
+            <form class="form-horizontal" th:object="${question}" th:action="@{/question}" method="post">
+                <input type="hidden" th:field="*{id}"/>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Frage:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" th:field="*{questionText}" th:errorclass="fieldError"
+                               placeholder="Wie lange dauerte der längste Kuss der Welt?"/>
+                        <td class="sr-only" th:if="${#fields.hasErrors('questionText')}" th:errors="*{questionText}">Title error message</td>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Antwort:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" th:field="*{answer}" th:errorclass="fieldError"
+                               placeholder="Der längste Kuss dauerte 58 Stunden, 35 Minuten und 58 Sekunden (Ekkachai und Laksana Tiranarat, 12. bis 14. Februar 2013)."/>
+                        <td th:if="${#fields.hasErrors('answer')}" th:errors="*{answer}">Title error message</td>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Erster Hinweis:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" th:field="*{firstHint}" th:errorclass="fieldError"
+                               placeholder="Der längste Kuss dauerte mehr als einen Tag."/>
+                        <td th:if="${#fields.hasErrors('firstHint')}" th:errors="*{firstHint}">Title error message</td>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Zweiter Hinweis:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" th:field="*{secondHint}" th:errorclass="fieldError"
+                               placeholder="Der zweitlängste Kuss dauerte 50 Stunden, 25 Minuten und 1 Sekunde."/>
+                        <td th:if="${#fields.hasErrors('secondHint')}" th:errors="*{secondHint}">Title error message</td>
+                    </div>
+                </div>
+                <div class="row">
+                    <input type="submit" value="Speichern"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

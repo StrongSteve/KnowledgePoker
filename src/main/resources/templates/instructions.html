@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+
+    <title>Spielanleitung</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+<div class="container">
+
+    <div class="jumbotron">
+        <div class="row text-center">
+            <div class="">
+                <h3><a href="#" th:href="@{/games}">Spiel starten</a></h3>
+                Um eine neue Runde zu starten verwende den Menüeintrag "Spiel starten".
+            </div>
+            <p/>
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h5>
+                            <a data-toggle="collapse" href="#collapseHintOne">Mehr zu den Regeln...</a>
+                        </h5>
+                    </div>
+                    <div id="collapseHintOne" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <li>Suche dir deine Mitspieler aus und beginne starte ein spontanes Spiel, definiere ein neues Spiel oder setze
+                            ein begonnenes Spiel fort.</li>
+                            <li>Der aktuelle Spielleiter (Dealer) stellt die Frage und alle Mitspieler müssen ihre Antwort
+                            auf einen Zettel schreiben und verdeckt vor sich ablegen.</li>
+                            <li>Die Regeln des Bietens sind wie beim echten Poker (Small und Big Blind)</li>
+                            <li>Erst danach wird der erste Hinweis aufgedeckt (Turn)</li>
+                            <li>Dann die obligatorische Bietrunde und der zweite
+                            Hinweis (River).</li>
+                            <li>Eine erneute Bietrunde und die Antwort wird aufgedeckt. </li>
+                            <li>Letze Bietrunde und der Sieger steht fest. Und wie immer gilt - auch bluffen ist erlaubt :)</li>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="jumbotron">
+        <div class="row text-center">
+            <div class="">
+                <h3><a href="#" th:href="@{/question/new}">Frage anlegen</a></h3>
+                Hier kannst du neue und spannende Fragen für <b>Knowledge Poker</b> anlegen.
+            </div>
+        </div>
+    </div>
+
+    <div class="jumbotron">
+        <div class="row text-center">
+            <div class="">
+                <h3><a href="#" th:href="@{/questions}">Fragen</a></h3>
+                Hier siehst eine Übersicht aller Fragen die du bereits angelegt hast.
+            </div>
+        </div>
+    </div>
+
+    <div class="jumbotron">
+        <div class="row text-center">
+            <div class="">
+                <h3><a href="#" th:href="@{/user/profile}">Profil</a></h3>
+                Hier kannst du alles über dich und deine Erlebnisse auf <b>Knowledge Poker</b> nachschlagen.
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

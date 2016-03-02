@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title th:text="${question.questionText}">Title"</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+
+<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+<div class="container">
+
+    <div class="well">
+        <p th:unless="${questionSubmittedBySocialConnection == null}">
+            Frage gestellt von
+            <span th:text="${questionSubmittedBySocialConnection.displayName}"/>
+            <img th:src="${questionSubmittedBySocialConnection.imageUrl}" width="32" height="32" />
+        </p>
+        <p th:unless="${questionSubmittedByUser == null}">
+            Frage gestellt von <span th:text="${questionSubmittedByUser.displayName}"/>
+        </p>
+    </div>
+
+    <div class="jumbotron">
+        <div class="row text-center">
+            <div class="">
+                <h2 th:text="${question.questionText}">Frage</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel-group">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" href="#collapseHintOne">Erster Hinweis</a>
+                </h4>
+            </div>
+            <div id="collapseHintOne" class="panel-collapse collapse">
+                <div class="panel-body" th:text="${question.firstHint}">Erster Hinweis</div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="panel-group">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" href="#collapseHintTwo">Zweiter Hinweis</a>
+                </h4>
+            </div>
+            <div id="collapseHintTwo" class="panel-collapse collapse">
+                <div class="panel-body" th:text="${question.secondHint}">Zweiter Hinweis</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel-group">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" href="#collapseAnswer">Lösung</a>
+                </h4>
+            </div>
+            <div id="collapseAnswer" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <h2><div th:text="${question.answer}">Lösung</div></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="#" th:href="${'/game/' +gameid +'/nextquestion'}" class="btn btn-info" role="button">Nächste Frage</a>
+</div>
+</body>
+</html>

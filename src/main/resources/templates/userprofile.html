@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Knowledge Poker</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+
+</head>
+<body>
+<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+
+<div class="container">
+
+    <div class="panel panel-default">
+        <div class="panel-heading"><h3>Cockpit</h3></div>
+
+        <div class="jumbotron">
+            <div class="row text-center">
+                <div>
+                    <h2 th:unless="${numberOfQuestions}" th:text="${'Du hast noch keine Fragen angelegt.'}"></h2>
+                    <h3 th:unless="${numberOfQuestions}">Möchtest du das ändern und eine neue <a href="#" th:href="@{/question/new}">Frage anlegen</a>?</h3>
+                    <h2 th:if="${numberOfQuestions} == 1"
+                        th:text="${'Du hast bereits eine Frage angelegt. Weiter so!'}"></h2>
+                    <h2 th:if="${numberOfQuestions} >= 2"
+                        th:text="${'Du hast bereits ' +numberOfQuestions +' Fragen angelegt. Weiter so!'}"></h2>
+                    <h3 th:text="${'Insgesamt gibt es bereits ' +overallAmountOfQuestions +' Fragen.'}"></h3>
+                    <h3>Einem <a href="#" th:href="@{/game/startQuickGame}">spontanen Spiel</a> steht also nichts im Wege!</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="row text-center">
+            <div>
+                <img th:if="${numberOfQuestions} >= 1" class="imageMargin" style="opacity:0.2"
+                     src="../images/badgeChip.png" title="Erste Frage verfasst"/>
+                <img th:if="${numberOfQuestions} >= 2" class="imageMargin" style="opacity:0.3"
+                     src="../images/badgeChip.png" title="Zweite Frage verfasst"/>
+                <img th:if="${numberOfQuestions} >= 5" class="imageMargin" style="opacity:0.5"
+                     src="../images/badgeChip.png" title="Fünf Fragen verfasst"/>
+                <img th:if="${numberOfQuestions} >= 10" class="imageMargin" style="opacity:0.7"
+                     src="../images/badgeChip.png" title="Zehn Fragen verfasst"/>
+                <img th:if="${numberOfQuestions} >= 25" class="imageMargin" style="opacity:1.0"
+                     src="../images/badgeChip.png" title="Fünfundzwanzig Fragen verfasst"/>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

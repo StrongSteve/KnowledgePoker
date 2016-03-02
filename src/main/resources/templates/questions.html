@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Knowledge Poker</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+
+<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+<div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">Fragenübersicht</div>
+            <div class="panel-body">
+                Übersicht deiner Fragen
+            </div>
+            <a class="button" th:href="${'/question/new/'}">Neue Frage anlegen</a>
+                <table class="table table-striped">
+                    <tr>
+                        <th>Id</th>
+                        <th>Frage</th>
+                        <th>Anzeigen</th>
+                        <th>Editieren</th>
+                        <th>Löschen</th>
+                    </tr>
+                    <tr th:each="question : ${questions}">
+                        <td th:text="${question.id}"><a href="/questionText/${questionText.id}">Id</a></td>
+                        <td th:text="${question.questionText}">Frage</td>
+                        <td><a th:href="${'/question/' + question.id}">Anzeigen</a></td>
+                        <td><a th:href="${'/question/edit/' + question.id}">Editieren</a></td>
+                        <td><a th:href="${'/question/remove/' + question.id}">Löschen</a></td>
+                    </tr>
+                </table>
+
+        </div>
+</div>
+
+</body>
+</html>

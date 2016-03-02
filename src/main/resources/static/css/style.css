@@ -1,0 +1,64 @@
+body {
+    background-image: url("../images/background.jpg");
+}
+
+.fieldError {
+    border: 1px solid #ff00b4;
+}
+
+.navbar-header {
+    float: none;
+}
+
+.navbar-header .logout {
+    float: right;
+}
+
+input[type=submit], .button {
+    background-color: transparent;
+    border:none;
+    cursor: pointer;
+    margin: 0 15px;
+    text-decoration: underline;
+}
+
+li > form {
+    padding: 15px 0;
+}
+
+.example {
+    font-style: italic;
+    color: 	#C0C0C0;
+}
+
+.badges-left {
+    float:left;
+    height: 60px;
+    width: 60px;
+}
+
+.question-bottom-right {
+    font-size: 15px !important;
+}
+
+.headerMargin {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.imageMargin {
+    margin-bottom: 20px;
+}
+
+.signOut {
+    background-image: url("../images/logout.png");
+    border: 0 none;
+    display: block;
+    height: 16px;
+    width: 16px;
+    opacity: 0.7;
+}
+
+.leaderboard {
+    color: blue;
+}
