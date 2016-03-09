@@ -60,6 +60,19 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
+    public Question getRandomQuestionFromUserAndExcludingQuestionIds(Long userId, List<Long> questionIdsToExclude) throws NoMoreQuestionException {
+        List<Long> questionIds =
+                this.questionRepository.findIdsFromUserAndExcludingQuestions(userId,
+                        questionIdsToExclude.isEmpty() ? Collections.singleton(-1L) : questionIdsToExclude);
+        if (!questionIds.isEmpty()) {
+            Random r = new Random();
+            Question q = questionRepository.findOne(questionIds.get(r.nextInt(questionIds.size())));
+            return q;
+        }
+        throw new NoMoreQuestionException("Out of new questions");
+    }
+
+    @Override
     public boolean canAccessQuestion(CurrentUser currentUser, Long questionId) {
         Question q = questionRepository.findOne(questionId);
         return Objects.equals(currentUser.getRole(), Role.ADMIN) || q.getSubmittedByUserId().equals(currentUser.getId());

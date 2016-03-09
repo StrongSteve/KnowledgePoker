@@ -25,7 +25,6 @@ public class Game {
     @Column(name = "lastmodifiedtimestamp")
     private Date lastModifiedTimeStamp;
 
-    //TODO: NotEmpty wird nicht korrekt ausgewertet
     @NotEmpty(message = "Der Name des Spiels fehlt!")
     @Column(name = "name")
     private String name;
@@ -134,6 +133,12 @@ public class Game {
         for (User player : getPlayers()) {
             ids.add(player.getId());
         }
+        ids.sort(new Comparator<Long>() {
+            @Override
+            public int compare(Long o1, Long o2) {
+                return o1.compareTo(o2);
+            }
+        });
         return ids;
     }
 

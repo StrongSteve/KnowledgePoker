@@ -20,6 +20,8 @@ public interface QuestionService {
 
     Question getRandomQuestionExcludingUserAndQuestionIds(List<Long> userIdsToExclude, List<Long> questionIdsToExclude) throws NoMoreQuestionException;
 
+    Question getRandomQuestionFromUserAndExcludingQuestionIds(Long userId, List<Long> questionIdsToExclude) throws NoMoreQuestionException;
+
     boolean canAccessQuestion(CurrentUser currentUser, Long questionId);
 
     long countQuestionsByUser(CurrentUser user);

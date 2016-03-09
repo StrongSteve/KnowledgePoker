@@ -24,8 +24,9 @@
                         th:text="${'Du hast bereits eine Frage angelegt. Weiter so!'}"></h2>
                     <h2 th:if="${numberOfQuestions} >= 2"
                         th:text="${'Du hast bereits ' +numberOfQuestions +' Fragen angelegt. Weiter so!'}"></h2>
+                    <h3 th:if="${numberOfQuestions} >= 1">Einem <a href="#" th:href="@{/game/startQuickGame}">spontanen Spiel</a> steht also nichts im Wege!</h3>
+                    <h3 th:unless="${numberOfQuestions}">Lege zumindest eine Frage an damit ein spontanes Spiel auch Sinn macht!</h3>
                     <h3 th:text="${'Insgesamt gibt es bereits ' +overallAmountOfQuestions +' Fragen.'}"></h3>
-                    <h3>Einem <a href="#" th:href="@{/game/startQuickGame}">spontanen Spiel</a> steht also nichts im Wege!</h3>
                 </div>
             </div>
         </div>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head lang="en">
 
     <title>Knowledge Poker</title>
@@ -15,7 +15,7 @@
             <div class="panel-body">
                 Übersicht über alle verfügbaren Spiele
             </div>
-            <a class="button" th:href="${'/game/new/'}">Neues Spiel anlegen</a>
+            <a class="button" sec:authorize="hasAuthority('ADMIN')" th:href="${'/game/new/'}">Neues Spiel anlegen</a>
                 <table class="table table-striped">
                     <tr>
                         <th>Spielname</th>

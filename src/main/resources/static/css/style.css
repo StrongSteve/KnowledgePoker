@@ -6,12 +6,14 @@ body {
     border: 1px solid #ff00b4;
 }
 
-.navbar-header {
-    float: none;
-}
-
-.navbar-header .logout {
-    float: right;
+.navbar-default .navbar-nav > div  {
+    color: #777;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    display: block;
+    padding: 10px 15px;
+    position: relative;
+    box-sizing: border-box;
 }
 
 input[type=submit], .button {
@@ -51,14 +53,14 @@ li > form {
 }
 
 .signOut {
-    background-image: url("../images/logout.png");
     border: 0 none;
     display: block;
+    background: url("../images/logout.png") no-repeat;
     height: 16px;
     width: 16px;
     opacity: 0.7;
 }
 
 .leaderboard {
-    color: blue;
+    color: #337ab7;
 }

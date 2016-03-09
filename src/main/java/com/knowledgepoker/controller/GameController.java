@@ -1,5 +1,6 @@
 package com.knowledgepoker.controller;
 
+import com.knowledgepoker.domain.Role;
 import com.knowledgepoker.service.exception.NoMoreQuestionException;
 import com.knowledgepoker.service.user.SocialConnectionService;
 import com.knowledgepoker.transfer.CurrentUser;
@@ -23,10 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * Created by starke on 14.02.2016.
@@ -78,7 +76,24 @@ public class GameController {
         //Get next question
         Question q;
         try {
-            q = questionService.getRandomQuestionExcludingUserAndQuestionIds(g.getPlayerIds(), g.getPlayedQuestionIds());
+            //Users can only see their own questions
+            if (Role.USER.equals(userService.getUserById(g.getCreatedByUserId()).get().getRole())) {
+                q = questionService.getRandomQuestionFromUserAndExcludingQuestionIds(g.getCreatedByUserId(), g.getPlayedQuestionIds());
+            }
+            else {
+                /*//Determine who is the next dealer and present one of his questions
+                List<Long> playerIds = g.getPlayerIds();
+                if (playerIds.size() > 0) {
+                    long questionsPlayed = g.getPlayedQuestionIds().size();
+                    long currentDealerId = -1L;
+                    currentDealerId = playerIds.get((int) questionsPlayed % playerIds.size());
+                    q = questionService.getRandomQuestionFromUserAndExcludingQuestionIds(currentDealerId, g.getPlayedQuestionIds());
+                }
+                else {
+                    q = questionService.getRandomQuestionExcludingUserAndQuestionIds(g.getPlayerIds(), g.getPlayedQuestionIds());
+                }*/
+                q = questionService.getRandomQuestionExcludingUserAndQuestionIds(g.getPlayerIds(), g.getPlayedQuestionIds());
+            }
         } catch (NoMoreQuestionException nmqex) {
             g.setFinished(true);
             gameService.saveGame(g);
@@ -100,6 +115,7 @@ public class GameController {
         return "gameshowquestion";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping("/game/new")
     public String newGame(Model model, @AuthenticationPrincipal CurrentUser user){
         GameCreateForm g = new GameCreateForm();
@@ -121,6 +137,7 @@ public class GameController {
         return "redirect:/game/" +g.getId() +"/nextquestion";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = "game", method = RequestMethod.POST)
     public String saveGame(@Valid @ModelAttribute(value = "game") GameCreateForm game, BindingResult bindingResult, Model model){
         if (bindingResult.hasErrors()) {

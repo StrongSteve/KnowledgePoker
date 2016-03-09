@@ -18,5 +18,8 @@ public interface QuestionRepository extends JpaRepository<Question, Long> {
     @Query(value = "select id from Question where id NOT IN (:questionIds) AND submittedByUserId NOT IN (:userIds)")
     List<Long> findIdsExcludingUsersAndQuestions(@Param("userIds") Collection<Long> userIds, @Param("questionIds")Collection<Long> questionIds);
 
+    @Query(value = "select id from Question where id NOT IN (:questionIds) AND submittedByUserId = :userId")
+    List<Long> findIdsFromUserAndExcludingQuestions(@Param("userId") Long userId, @Param("questionIds")Collection<Long> questionIds);
+
     long countBySubmittedByUserId(Long id);
 }
